@@ -1,1 +1,0 @@
-/Users/saeed/Projects/Portfolio/weather_app/build/app/intermediates/cxx/RelWithDebInfo/461g645k/obj/x86
