@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/Users/saeed/development/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/saeed/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/saeed/Projects/Portfolio/weather_app/android/app/.cxx/RelWithDebInfo/461g645k/x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/saeed/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/saeed/Projects/Portfolio/weather_app/android/app/.cxx/RelWithDebInfo/461g645k/x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}

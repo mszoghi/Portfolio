@@ -1,0 +1,2 @@
+/Users/saeed/Projects/Portfolio/weather_app/android/app/.cxx/RelWithDebInfo/461g645k/arm64-v8a/CMakeFiles/edit_cache.dir
+/Users/saeed/Projects/Portfolio/weather_app/android/app/.cxx/RelWithDebInfo/461g645k/arm64-v8a/CMakeFiles/rebuild_cache.dir

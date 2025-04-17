@@ -1,0 +1,56 @@
+# Build and generated files
+build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+*.g.dart
+*.freezed.dart
+*.mocks.dart
+generated_plugin_registrant.dart
+
+# Dependencies
+ios/Pods/
+.pub-cache/
+.pub/
+
+# Platform specific
+android/app/debug/
+android/app/profile/
+android/app/release/
+ios/Flutter/.last_build_id
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+macos/Flutter/ephemeral/
+windows/flutter/ephemeral/
+linux/flutter/ephemeral/
+
+# IDE and editor files
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.project
+.classpath
+.settings/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Test coverage
+coverage/
+test/coverage/
+
+# Temporary files
+*.log
+*.tmp
+*.temp
+*.swp
+
+# Keep these important files
+!pubspec.yaml
+!analysis_options.yaml
+!lib/
+!test/
