@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:osm_nominatim/osm_nominatim.dart';
 import '../services/location_service.dart';
@@ -25,6 +26,9 @@ class SettingsPageState extends State<SettingsPage> {
   List<Place> _searchResults = [];
   bool _isSearching = false;
   int _selectedLocationIndex = 0;
+
+  // Debounce timer for search
+  Timer? _debounceTimer;
 
   @override
   void initState() {
@@ -457,54 +461,63 @@ class SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  /// Handles text changes in the search field
+  /// Handles text changes in the search field with debouncing
   Future<void> _onSearchTextChanged() async {
-    final query = _nameController.text.trim();
-
-    if (query.length < 3) {
-      // Clear results if query is too short
-      if (_searchResults.isNotEmpty) {
-        setState(() {
-          _searchResults = [];
-          _isSearching = false;
-        });
-      }
-      return;
+    // Cancel any previous timer
+    if (_debounceTimer?.isActive ?? false) {
+      _debounceTimer!.cancel();
     }
 
-    setState(() {
-      _isSearching = true;
+    // Start a new timer
+    _debounceTimer = Timer(const Duration(milliseconds: 500), () async {
+      final query = _nameController.text.trim();
+
+      if (query.length < 3) {
+        // Clear results if query is too short
+        if (_searchResults.isNotEmpty) {
+          setState(() {
+            _searchResults = [];
+            _isSearching = false;
+          });
+        }
+        return;
+      }
+
+      setState(() {
+        _isSearching = true;
+      });
+
+      try {
+        // Search for locations matching the query
+        final locations = await Nominatim.searchByName(
+          query: query,
+          limit: 5,
+          addressDetails: true,
+          extraTags: true,
+          nameDetails: true,
+        );
+
+        if (mounted) {
+          setState(() {
+            _searchResults = locations;
+            _isSearching = false;
+            _selectedLocationIndex = 0;
+          });
+        }
+      } catch (e) {
+        if (mounted) {
+          setState(() {
+            _isSearching = false;
+          });
+        }
+      }
     });
-
-    try {
-      // Search for locations matching the query
-      final locations = await Nominatim.searchByName(
-        query: query,
-        limit: 5,
-        addressDetails: true,
-        extraTags: true,
-        nameDetails: true,
-      );
-
-      if (mounted) {
-        setState(() {
-          _searchResults = locations;
-          _isSearching = false;
-          _selectedLocationIndex = 0;
-        });
-      }
-    } catch (e) {
-      if (mounted) {
-        setState(() {
-          _isSearching = false;
-        });
-      }
-    }
   }
 
   @override
   void dispose() {
     _nameController.dispose();
+    _debounceTimer?.cancel();
     super.dispose();
   }
 }

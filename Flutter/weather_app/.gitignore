@@ -41,12 +41,6 @@ app.*.symbols
 # Obfuscation related
 app.*.map.json
 
-
-# Web related
-lib/generated_plugin_registrant.dart
-web/favicon.png
-web/icons/
-
 # iOS/XCode related
 **/ios/**/*.mode1v3
 **/ios/**/*.mode2v3
@@ -64,6 +58,7 @@ web/icons/
 **/ios/**/profile
 **/ios/**/xcuserdata
 **/ios/.generated/
+**/ios/build/*
 **/ios/Flutter/.last_build_id
 **/ios/Flutter/App.framework
 **/ios/Flutter/Flutter.framework
@@ -83,6 +78,7 @@ web/icons/
 **/android/key.properties
 **/android/.idea/
 **/android/*/debug
+**/android/app/.cxx/Debug/*
 **/android/*/profile
 **/android/*/release
 **/RelWithDebInfo
